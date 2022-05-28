@@ -1,9 +1,10 @@
 body{
     background-color: rgb(31, 27, 27);
-}
-
-li{
     font-family: sans-serif;
     font-size: 45px;
-    color: #ffffff;
+    color:aliceblue;
+}
+
+a{
+    color:blue;
 }
