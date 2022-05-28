@@ -1,3 +1,4 @@
+from http.client import responses
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -9,4 +10,6 @@ def asa(request):
     return HttpResponse("Hello ASA")
 
 def greet(request, name : str):
-    return HttpResponse(f"Hello, {name.capitalize()}!")
+    return render(request, "hello/greet.html", {
+       "name": name.capitalize()
+    })
