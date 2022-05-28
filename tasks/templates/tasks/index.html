@@ -8,6 +8,8 @@
     </head>
 
     <body>
-        <h1>Hello there {{name}} </h1>
+        {% for i in tasks%}
+            <li>{{i}}</li>
+        {% endfor%}
     </body>
 </html>
