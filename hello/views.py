@@ -8,5 +8,5 @@ def index(request):
 def asa(request):
     return HttpResponse("Hello ASA")
 
-def greet(request, name):
-    return HttpResponse(f"Hello, {name}!")
+def greet(request, name : str):
+    return HttpResponse(f"Hello, {name.capitalize()}!")
