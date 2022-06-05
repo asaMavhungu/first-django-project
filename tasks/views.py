@@ -1,10 +1,11 @@
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django import forms
+from django.urls import reverse
 
 # Create your views here.
 
-tasks = ["foo", "bar", "faz"]
+tasks = []
 
 class simpleForm(forms.Form):
     task = forms.CharField(label="task")
@@ -17,10 +18,11 @@ def index(request):
 
 def add(request):
     if request.method == "POST":
-        form = simpleForm(request)
+        form = simpleForm(request.POST)
         if form.is_valid():
             task = form.cleaned_data["task"]
             tasks.append(task)
+            return HttpResponseRedirect(reverse("tasks:index"))
         else:
             return render(request, "tasks/add.html", {
             "form": form
