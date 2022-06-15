@@ -12,8 +12,11 @@ class simpleForm(forms.Form):
     priority = forms.IntegerField(label="priority", min_value=0, max_value= 10)
 
 def index(request):
+    if "tasks" not in request.session:
+        request.session["tasks"] = []
+
     return render(request, "tasks/index.html", {
-        "tasks" : tasks
+        "tasks" : request.session["tasks"]
     })
 
 def add(request):
@@ -21,7 +24,7 @@ def add(request):
         form = simpleForm(request.POST)
         if form.is_valid():
             task = form.cleaned_data["task"]
-            tasks.append(task)
+            request.session["tasks"] += [task]
             return HttpResponseRedirect(reverse("tasks:index"))
         else:
             return render(request, "tasks/add.html", {
